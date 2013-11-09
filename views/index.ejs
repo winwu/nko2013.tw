@@ -7,10 +7,12 @@
     <link href="http://yui.yahooapis.com/pure/0.2.1/pure-min.css" rel="stylesheet">
     <link href="/stylesheets/bootstrap-combined.no-icons.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/colpick.css" type="text/css" />
     <link rel='stylesheet' href='/stylesheets/style.css'/>
     <!--script src="https://code.jquery.com/jquery.js"></script-->
     <script src="/js/jquery-2.0.3.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/colpick.js"></script>
     <script>
     var socket = io.connect('http://localhost');
     //socket.on('new_work', function(){
@@ -61,7 +63,13 @@
                   <li class="yellow"></li>
               </ul>
               <!--label for="choose_color">Choose Other:<input id="choose_color" type="color"/></label-->
-              <label for="choose_range"><i class="icon-pencil"></i>  Choose brush's width:<input id="choose_range" type="range" max="15" min="1" value="4" step="1"/></label>       
+              <label for="choose_range"><i class="icon-pencil"></i>  Choose brush's width:<input id="choose_range" type="range" max="15" min="1" value="4" step="1"/></label>   
+
+              <label for="allbackground_picker"><i class="icon-pencil"></i>  Background:
+                <input id="allbackground" style="display:none"/>
+                <div class="colorSelector"><div style="background: #0000ff"></div></div>
+                <input type="text" id="allbackground_picker" class="input_color" placeholder="ffffff" autocomplete="off"> </label>
+
               </nav>
               </div><!--center part--><div id="news_and_ec" class="pure-u-3-5">
                 <div id="newtab" class="clearfix">

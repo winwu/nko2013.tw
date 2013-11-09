@@ -234,3 +234,10 @@ margin: 10px 0;
   text-indent: 13px;
   margin: 0;
 } 
+
+
+input[type="text"].input_color {
+  width: 100px!important;
+  border:1px solid #eee;
+  border-right: 30px solid #fff;
+}

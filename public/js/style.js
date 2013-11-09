@@ -1,4 +1,6 @@
 $(function(){
+  var newColor = '#ffffff';
+  myCanvas.style.background = '#ffffff';
   //填姓名, 存姓名功能
   var user_name;
   function save_username(){
@@ -59,7 +61,14 @@ $(function(){
 
   //清除 = 新增圖面
   $('#add_canvas').click(function(e){
+    $('#redo_canvas, #undo_canvas, #save_canvas').removeAttr('disabled');
+    newColor = '#ffffff';
+    ctx.fillStyle='';
+    myCanvas.style.background='';
+    $('#allbackground').val('#ffffff');
+    $('#allbackground_picker').val('#ffffff').css('border-color','#FFFFFF');
     ctx.clearRect(0,0,canvas.width,canvas.height);
+    $('#myCanvas').css('cursor','');
     return false;
     if(e.state){
       context.putImageData(e.state, 0, 0);
@@ -69,13 +78,24 @@ $(function(){
 
   // 儲存
   $('#save_canvas').click(function(){
-    var saved_dataURL =  canvas.toDataURL();
+    ctx.globalCompositeOperation = "destination-over";
+    console.log('newColor'+newColor);
+    //console.log(typeof newColor === "undefined");
+    /*if( typeof newColor === "undefined"){
+      ctx.fillStyle  = '#ffffff';
+    }else{*/
+      ctx.fillStyle  = newColor;
+    //}
+
+    myCanvas.style.background = newColor;
+    //ctx.fill();
+    ctx.fillRect(0, 0, 700, 350);
+    ctx.fill();
+
+    var saved_dataURL =  canvas.toDataURL('image/jpeg');
     sessionStorage.setItem('image', saved_dataURL );
-
-    //
+ 
     //var data_obj = {name : '', pic:'',music:''};
-
-
     socket.emit('message', {name: user_name, pic: saved_dataURL, music: ''});
     //load.disabled = false;
 
@@ -89,6 +109,10 @@ $(function(){
 
     //alert('Broadcase!');
     prop_msg('Broadcase Your Works!');
+    $('#redo_canvas, #undo_canvas, #save_canvas').attr('disabled','disabled');
+    $('#myCanvas').css('cursor','not-allowed');
+    canvas = document.getElementById('myCanvas');
+    ctx = canvas.getContext('2d');
     return false;
   });
 
@@ -165,5 +189,25 @@ $(function(){
       e.pageY - canvas.offsetTop
     );
   }
+
+ 
+   $('#allbackground_picker').colpick({
+        layout:'hex',
+        colorScheme:'dark',
+        submit:0,
+        onChange:function(hsb,hex,rgb,fromSetColor) {
+            if(!fromSetColor) $('#allbackground_picker').val(hex).css('border-color','#'+hex);
+            $('#allbackground').val( '#'+hex);
+            newColor = $('#allbackground').val();
+            myCanvas.style.background = newColor;
+
+            ctx.fillStyle  = newColor;
+
+        }
+    });
+   $('#allbackground_picker').keyup(function(){
+        $(this).colpickSetColor(this.value);
+    });
+
 
 });
