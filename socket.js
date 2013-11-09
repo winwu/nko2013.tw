@@ -41,13 +41,15 @@ module.exports = function(server){
             console.log('join');
         });
 
-        socket.on('message', function(name, pic, music){
-            console.log(name + ":" + pic);
-            socket.broadcast.emit('receivePic',{name:name, picture:pic,music:music});
+        socket.on('message', function(data_obj){
+            //{name: name, pic: pic, music: music}
+            console.log(data_obj.name + ":" + data_obj.pic);
+            socket.broadcast.emit('receivePic',data_obj);
         });
 
         socket.on('disconnect', function(){
             console.log('disconnect!');
         });
+
     });
 };
