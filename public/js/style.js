@@ -1,4 +1,31 @@
 $(function(){
+
+  //填姓名, 存姓名功能
+  function save_username(){
+    var user_name;
+    if($('#username').val()){
+      var user_name = $('#username').val();
+    }else{
+      var user_name = 'Anonymous';
+    }
+    console.log(user_name);
+  }
+
+
+  $hellobox_shadow = $('#hellobox_shadow');
+  $hellobox = $('#hellobox');
+    window.onload = function(){
+      $('#hellobox_shadow, #hellobox').fadeIn();
+    }
+  $('#hellobox_shadow, #save_username, #save_anno').on('click',function(){
+      save_username();
+      $('#hellobox_shadow, #hellobox').fadeOut();
+  });
+  
+
+
+
+
   var canvas = document.getElementById('myCanvas');
   var ctx = canvas.getContext('2d');
 
