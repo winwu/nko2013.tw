@@ -1,8 +1,150 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+body{padding:0;}
+a:hover{text-decoration: none}
+a{color:#2B3E4D;;text-decoration: none;}
+dd{margin:0;}
+li{list-style: none}
+menu, ol, ul {padding:0;margin:0;}
+.clearfix:before,
+.clearfix:after {display: table;content: " ";}
+.clearfix:after {clear: both;}
+.pull-right {float: right !important;}
+.pull-left {float: left !important;}
+.pure-g-r>div,
+.pure-g>div{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box; 
+}
+.pure-button-search{background: rgb(246, 212, 33)}
+
+#doc{color: #333;border: 1px solid #ddd;
+box-shadow: 6px 7px 12px #eee;}
+#hd_top{height: 50px;line-height: 50px;border-bottom: 1px solid #999;}
+#gohome {padding-left: 30px;font-size: 15px;}
+#gohome a{color: #424242;}
+#social_link{float:right;margin: 0 5px 0 5px;}
+#social_link li{width: 34px;height: 34px;margin-right: 2px;display: inline-block;border-radius: 100%;}
+#social_link li a{cursor: pointer;display: block;text-align: center;font-size: 1.5em;line-height: 32px;color: #fff;}
+#social_link li a:hover{font-size:1.8em;}
+
+#social_link li{background:#0A71A2}
+#social_link li:nth-child(1){background:#0A71A2}
+#social_link li:nth-child(2){background:#424AA2}
+#social_link li:nth-child(3){background:#EC8449}
+#social_link li:nth-child(4){background:#C48920}
+#social_link li:nth-child(5){background:#505050}
+#social_link li:nth-child(6){background:#0A71A2}
+#social_link li:nth-child(7){background:#168BDA}
+
+#hd{height: auto;border-bottom: 1px solid rgb(180, 180, 180);text-indent: 30px}
+#hd h1{height: 52px;
+padding: 0;
+margin: 0;
+text-align: center;
+line-height: 52px;
+color: #B6B6B6;}
+
+ul#cate{height: 20px;margin: 0 0 5px 0;font-size: 1.2em;}
+ul#cate li{margin-right: 10px;display: inline-block;}
+ul#cate li a{color:#999}
+ul#cate li.default a{color:#FFF;font-weight:bold}#searchbtn{position: absolute;right: -3px;top: 1px;height: 38px;}
+
+
+#ft{text-align: center;padding: 10px;background: black;color: #666;}
+
+
+#containter #l nav h4{font-size: 1.5em;background: #DDD;}
+#containter #l nav ul.left{}
+#containter #l nav li{
+border-bottom: 1px solid #EEE;height: 40px;line-height: 40px;text-indent: 20px;font-size: 19px;}
+#containter #l nav li:hover{background:#E9E9E9;cursor: pointer;}
+#newtab.content,
+#ec.content,
+#ec .bd.content{padding:0.5em}
+#newtab ul,
+#ec ul.top{width: auto;}
+#newtab li,
+#ec ul.top li{background: #eee;cursor: pointer;width: 20%;float: left;text-align: center;font-size: 1.2em;list-style: none;display: inline-block;height: 36px;line-height: 36px;}
+/*nth-child start from  1*/
+#news_and_ec ul.top li:nth-child(1){border-top: 4px solid rgb(241, 184, 79);}
+#news_and_ec ul.top li:nth-child(2){ border-top: 4px solid rgb(169, 156, 201)}
+#news_and_ec ul.top li:nth-child(3){ border-top: 4px solid #3D3D7E;}
+#news_and_ec ul.top li:nth-child(4){ border-top: 4px solid #3CC3DD;}
+#news_and_ec ul.top li:nth-child(5){border-top: 4px solid #8CE7A2;}
+
+
+#logo_right{box-sizing: border-box;line-height:52px }
+#logo_right > button{
+    background: rgb(99, 99, 117);
+    color: #fff;
+
+}
+#newtab li.cur,
+#ec ul.top li.cur{background: #FFF;padding-bottom: 1px;border-bottom: none;}
+#newtab li a:hover,
+#ec ul.top li a:hover{text-decoration:none}
+#newtab li:hover,
+#ec ul.top li:hover{background:#fff}
+
+
+
+#news_and_ec {border-right: 1px solid #C4CAD3;box-sizing: border-box;border-left: 1px solid #C4CAD3;}
+
+#ec{margin-top:10px;clear: both;}
+#ec .bd.content li a{display: block;}
+#ec .bd.content li{float:left;margin-bottom: 10px;display: block;width: 50%;}
+#ec .bd.content li label{width: 100px;background: #EEB3B3;display: block;float: left;margin-right: 4px;}
+#ec .bd.content li img{background: #EBEBEB;display: block;width: 100px;height: 64px;}
+
+#personal_img{border-radius:100%;width:40%;float: left}
+#real_name{float:left;}
+
+#nav_link .content ul {box-sizing: border-box;}
+#nav_link {box-sizing: border-box;height: 100%;background: white;}
+/*#nav_link nav h4{margin: 0;text-indent: 15px;padding: 10px;background: #C4CAD3;}*/
+/*#div_link_group a:not(:first-child):not(:last-child):after{content:" | ";}*/
+#div_link_group a:not(:last-child):after{content:" | ";}
+/*http://stackoverflow.com/questions/7788018/css-selector-for-other-than-the-first-child-and-last-child*/
+#div_link_group a{color: #B4B4B4;}
+#div_link_group a:hover{color:#fff;}
+#myCanvas{
+    margin: 10px;
+}
+/*#painter_ctrl li{
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    text-indent: 20px;
+}*/
+#color_plate {
+text-align: center;
 }
 
-a {
-  color: #00B7FF;
+#color_plate li{
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    cursor: pointer;
+    margin: 10px;
+
 }
+#color_plate .red{background: red}
+#color_plate .yellow{background: yellow}
+#color_plate .blue{background: blue}
+#color_plate .orange{background: orange}
+#color_plate .green{background: rgb(139, 204, 23)}
+#color_plate .white{background: white}
+#color_plate .pink{background: rgb(233, 75, 103)}
+
+
+#show_history{text-align: center;
+height: 400px;
+overflow: scroll;}
+#show_history .title{background:#ddddd9;margin:0;height:40px;line-height: 40px}
+#show_history img{
+    width: 90%;
+border: 1px solid #eee;
+margin: 10px 0;
+}
+
+#nav_link label{margin: 0 21px;}
