@@ -38,7 +38,7 @@ module.exports = function(server){
                 
             });
 
-            console.log('join');
+            console.log(name + 'join');
         });
 
         socket.on('message', function(data_obj){

@@ -5,9 +5,10 @@ $(function(){
     if($('#username').val()){
       user_name = $('#username').val();
     }else{
-      user_name = 'Anonymous';
+      user_name = 'Guest';
     }
     console.log(user_name);
+    socket.emit('join', user_name );
     $('#hellobox_shadow, #hellobox').fadeOut();
      prop_msg('Hello! '+ user_name );
   }
