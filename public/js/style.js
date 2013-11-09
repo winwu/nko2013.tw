@@ -13,7 +13,7 @@ $(function(){
   }
   //msg prop 功能
   function prop_msg(txt){
-    $('#msg').html(txt).css('display','inline-block').fadeOut(4000);
+    $('#msg').html(txt).css('display','inline-block').fadeOut(3000);
   }
 
   $hellobox_shadow = $('#hellobox_shadow');
@@ -35,6 +35,8 @@ $(function(){
         save_username();    }
   });
 
+
+  //canvas
   var canvas = document.getElementById('myCanvas');
   var ctx = canvas.getContext('2d');
 
@@ -72,13 +74,14 @@ $(function(){
 
     // set canvasImg image src to dataURL
     // so it can be saved as an image
-    var author_talking_dom = '<span>'+ user_name +'\'s works:</span>'
+    var author_talking_dom = '<p><code>'+ user_name +'</code>\'s works:</p>'
     var new_saved_dom = '<img src="' + saved_dataURL + '"/>';
     console.log(new_saved_dom);
     $('#paint_saved_history').prepend('<div class="clearfix">'+ author_talking_dom + new_saved_dom + '</div>');
     //document.getElementById('canvasImg').src = saved_dataURL;
 
-    alert('Broadcase!');
+    //alert('Broadcase!');
+    prop_msg('Broadcase Your Works!');
     return false;
   });
 

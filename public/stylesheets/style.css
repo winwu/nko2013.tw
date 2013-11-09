@@ -138,7 +138,14 @@ text-align: center;
 #show_history{text-align: center;
 height: 400px;
 overflow: scroll;}
-#show_history .title{background:#ddddd9;margin:0;height:40px;line-height: 40px}
+#show_history .title{
+  background:#ddddd9;
+  margin:0;
+  height:40px;
+  line-height: 40px;
+  position: absolute;
+  width: 255px;
+}
 #show_history img{
     width: 90%;
 border: 1px solid #eee;
@@ -148,9 +155,9 @@ margin: 10px 0;
 #nav_link label{margin: 0 21px;}
 
 .pure-button-success,
-      .pure-button-error,
-      .pure-button-warning,
-      .pure-button-secondary {
+.pure-button-error,
+.pure-button-warning,
+.pure-button-secondary {
           color: white;
           border-radius: 4px;
           text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
@@ -213,9 +220,17 @@ margin: 10px 0;
   margin: 0;
   line-height: 30px;
   text-align: center;
-  text-indent: 10px;
+  text-indent: 0
 }
 #username {
   width: 96%;
   height: 28px;
 }
+#paint_saved_history {
+  margin-top: 50px;
+}
+#paint_saved_history p{
+  text-align: left;
+  text-indent: 13px;
+  margin: 0;
+} 
