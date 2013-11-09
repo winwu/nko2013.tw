@@ -3,10 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link href="http://yui.yahooapis.com/pure/0.2.1/pure-min.css" rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="/stylesheets/bootstrap-combined.no-icons.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <!--script src="https://code.jquery.com/jquery.js"></script-->
     <script src="/js/jquery-2.0.3.js"></script>
     <script src="/js/style.js"></script>
   </head>
@@ -21,7 +23,6 @@
               <li class=""><a href="#"><i class="icon-facebook-sign"></i> </a></li>
             </ul>
           </div>
-          
         </div><!--pure-u-2-3-->
       </div><!--hd_top-->
       
@@ -32,16 +33,15 @@
         </div>
         <div id="logo_right">
         <button id="add_canvas" class="pure-button pure-button-large"><i class="icon-plus"></i> Add New</button>
-        <button id="save_canvas" class="pure-button pure-button-xlarge"><i class="icon-save"></i> Save</button>
         <button id="undo_canvas" class="pure-button pure-button-xlarge"><i class="icon-undo"></i>  Undo</button>
         <button id="redo_canvas" class="pure-button pure-button-xlarge"><i class="icon-rotate-right"></i> Redo</button>
-        <button id="clear_canvas" class="pure-button pure-button-xlarge"><i class="icon-trash"></i> Clear</button>
-        </div>
+        <button id="save_canvas" class="pure-button pure-button-warning pure-button-xlarge "><i class="icon-bullhorn"></i> Broadcast</button>
+        <div id="msg" class="alert alert-success">Hi, You had Broadcase Your Works</div>
+        </div> 
       </div><!--hd-->
       
 
       <div id="containter" class="pure-g-r">
-
               <div id="nav_link" class="pure-u-1-5">
               <nav class="content">
               <ul id="color_plate">
@@ -58,11 +58,11 @@
               </div><!--center part--><div id="news_and_ec" class="pure-u-3-5">
                 <div id="newtab" class="clearfix">
                   <ul class="top clearfix">
-                      <li class="cur"><a href="">Topic</a></li>
+                      <li class="cur"><!--a href=""-->My Works<!--/a--></li>
+                      <!--li><a href="">Topic</a></li>
                       <li><a href="">Topic</a></li>
                       <li><a href="">Topic</a></li>
-                      <li><a href="">Topic</a></li>
-                      <li><a href="">Topic</a></li>
+                      <li><a href="">Topic</a></li-->
                   </ul>
                   <div class="bd content">
                       <canvas id="myCanvas"  width="700" height="350">
@@ -73,7 +73,7 @@
               
               </div>
               <div id="show_history"  class="pure-u-1-5">
-                <h4 class="title">Your Saved Item : </h4>
+                <h4 class="title"><i class="icon-bullhorn"></i> Broadcase </h4>
                 <div id="paint_saved_history">
 
                 <!--img class="canvasImg"/--><!--will insert img by js-->
@@ -84,12 +84,27 @@
       </div><!--container-->    
       
       <div id="ft">
-        <div id="div_link_group">
+        <!--div id="div_link_group">
           <a href="">Contact Us</a>
           <a href="">Partner</a>
-        </div>
+        </div-->
       <div id="copyright">Cagod Team at node.js knockout 2013  &copy; All Rights Reserved.</div>
       </div><!--#ft-->
+
+      <div id="hellobox_shadow"></div>
+      <div id="hellobox" class="pure-form pure-form-stacked">
+          <fieldset>
+              <legend>Hi, Artist! What is Your Name?</legend>
+
+              <div class="hello_form_box">
+                      <label for="username">Name:</label>
+                      <input id="username" type="text">       
+              </div>
+              <button id="save_username" type="submit" class="pure-button pure-button-primary">Save</button>
+              <button id="save_anno" type="submit" class="pure-button pure-button-secondary">Want to be Anonymous</button>
+          </fieldset>
+      </div>
+
   </div><!--#doc-->
   </body>
 </html>
