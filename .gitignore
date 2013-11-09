@@ -4,3 +4,4 @@ node_modules
 npm-debug.log
 views/index.ejs.bak
 public/js/bonsai-*
+dump.rdb
