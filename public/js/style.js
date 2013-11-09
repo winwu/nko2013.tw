@@ -77,6 +77,7 @@ $(function(){
 
 
   // 儲存
+var saved_dataURL;
   $('#save_canvas').click(function(){
     ctx.globalCompositeOperation = "destination-over";
     console.log('newColor'+newColor);
@@ -92,7 +93,7 @@ $(function(){
     ctx.fillRect(0, 0, 700, 350);
     ctx.fill();
 
-    var saved_dataURL =  canvas.toDataURL('image/jpeg');
+    saved_dataURL =  canvas.toDataURL('image/jpeg');
     sessionStorage.setItem('image', saved_dataURL );
  
     //var data_obj = {name : '', pic:'',music:''};
@@ -101,13 +102,13 @@ $(function(){
 
     // set canvasImg image src to dataURL
     // so it can be saved as an image
+    // A.自己畫的圖片要自己 append
     var author_talking_dom = '<p><code>'+ user_name +'</code>\'s works:</p>'
     var new_saved_dom = '<img src="' + saved_dataURL + '"/>';
     console.log(new_saved_dom);
     $('#paint_saved_history').prepend('<div class="clearfix">'+ author_talking_dom + new_saved_dom + '</div>');
-    //document.getElementById('canvasImg').src = saved_dataURL;
-
-    //alert('Broadcase!');
+  
+  
     prop_msg('Broadcase Your Works!');
     $('#redo_canvas, #undo_canvas, #save_canvas').attr('disabled','disabled');
     $('#myCanvas').css('cursor','not-allowed');
@@ -116,9 +117,19 @@ $(function(){
     return false;
   });
 
+    // B.接收別人的圖片要接 data_obj
+    socket.on('receivePic',function(data_obj){
+      console.log( data_obj.name );
+      console.log('理我一下');
+      var author_talking_dom = '<p><code>'+ data_obj.name +'</code>\'s works:</p>'
+      var new_saved_dom = '<img src="' + data_obj.pic + '"/>';
+      console.log(new_saved_dom);
+      $('#paint_saved_history').prepend('<div class="clearfix">'+ author_talking_dom + new_saved_dom + '</div>');
+    }); 
+
+
   // 復原
   $('#undo_canvas').click(function(){
-
      window.history.go(-1);
      return false;
   });

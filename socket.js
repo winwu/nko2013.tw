@@ -43,7 +43,8 @@ module.exports = function(server){
 
         socket.on('message', function(data_obj){
             //{name: name, pic: pic, music: music}
-            console.log(data_obj.name + ":" + data_obj.pic);
+            console.log(data_obj.name + ":" /*+ data_obj.pic*/);
+            //console.log(data_obj);
             socket.broadcast.emit('receivePic',data_obj);
         });
 
