@@ -1,5 +1,4 @@
 $(function(){
-
   //填姓名, 存姓名功能
   var user_name;
   function save_username(){
@@ -9,6 +8,12 @@ $(function(){
       user_name = 'Anonymous';
     }
     console.log(user_name);
+    $('#hellobox_shadow, #hellobox').fadeOut();
+     prop_msg('Hello! '+ user_name );
+  }
+  //msg prop 功能
+  function prop_msg(txt){
+    $('#msg').html(txt).css('display','inline-block').fadeOut(4000);
   }
 
   $hellobox_shadow = $('#hellobox_shadow');
@@ -16,14 +21,19 @@ $(function(){
     window.onload = function(){
       $('#hellobox_shadow, #hellobox').fadeIn();
     }
+
+
   $('#hellobox_shadow, #save_username, #save_anno').on('click',function(){
       save_username();
-      $('#hellobox_shadow, #hellobox').fadeOut();
   });
-  
 
-
-
+  //if press enter = save user name
+  $hellobox.keypress(function( event ) {
+    if ( event.which == 13 ) {
+        //alert(event.keyCode);
+        event.preventDefault();
+        save_username();    }
+  });
 
   var canvas = document.getElementById('myCanvas');
   var ctx = canvas.getContext('2d');
