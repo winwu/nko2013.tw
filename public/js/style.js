@@ -70,6 +70,12 @@ $(function(){
   $('#save_canvas').click(function(){
     var saved_dataURL =  canvas.toDataURL();
     sessionStorage.setItem('image', saved_dataURL );
+
+    //
+    //var data_obj = {name : '', pic:'',music:''};
+
+
+    socket.emit('message', {name: user_name, pic: saved_dataURL, music: ''});
     //load.disabled = false;
 
     // set canvasImg image src to dataURL
