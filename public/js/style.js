@@ -18,8 +18,8 @@ $( "#color_plate > li" ).click(function() {
     ctx.strokeStyle =  $(this).attr("class");
 });
 
-//清除
-$('#clear_canvas').click(function(e){
+//清除 = 新增圖面
+$('#add_canvas').click(function(e){
   ctx.clearRect(0,0,canvas.width,canvas.height);
   return false;
   if(e.state){
