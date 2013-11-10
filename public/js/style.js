@@ -24,6 +24,8 @@ $(function(){
   $hellobox = $('#hellobox');
     window.onload = function(){
       $('#hellobox_shadow, #hellobox').fadeIn();
+
+      init();
     }
 
 
