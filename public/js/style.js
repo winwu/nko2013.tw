@@ -1,6 +1,7 @@
 $(function(){
   var newColor = '#ffffff';
   myCanvas.style.background = '#ffffff';
+
   //填姓名, 存姓名功能
   var user_name;
   function save_username(){
@@ -38,6 +39,8 @@ $(function(){
         save_username();    }
   });
 
+  //Audio
+  var audio = new Audio('musics/01.mp3');
 
   //canvas
   var canvas = document.getElementById('myCanvas');
@@ -53,10 +56,14 @@ $(function(){
     ctx.lineWidth = $('#choose_range').val();
   });
 
-  // 設定color 
+  // 設定color
   $( "#color_plate > li" ).click(function() {
       $(this).attr("class")
       ctx.strokeStyle =  $(this).attr("class");
+
+      //change music
+      audio = new Audio('musics/01.mp3');
+
   });
 
   //清除 = 新增圖面
@@ -95,7 +102,7 @@ var saved_dataURL;
 
     saved_dataURL =  canvas.toDataURL('image/jpeg');
     sessionStorage.setItem('image', saved_dataURL );
- 
+
     //var data_obj = {name : '', pic:'',music:''};
     socket.emit('message', {name: user_name, pic: saved_dataURL, music: ''});
     //load.disabled = false;
@@ -107,8 +114,8 @@ var saved_dataURL;
     var new_saved_dom = '<img src="' + saved_dataURL + '"/>';
     console.log(new_saved_dom);
     $('#paint_saved_history').prepend('<div class="clearfix">'+ author_talking_dom + new_saved_dom + '</div>');
-  
-  
+
+
     prop_msg('Broadcase Your Works!');
     $('#redo_canvas, #undo_canvas, #save_canvas').attr('disabled','disabled');
     $('#myCanvas').css('cursor','not-allowed');
@@ -125,7 +132,7 @@ var saved_dataURL;
       var new_saved_dom = '<img src="' + data_obj.pic + '"/>';
       console.log(new_saved_dom);
       $('#paint_saved_history').prepend('<div class="clearfix">'+ author_talking_dom + new_saved_dom + '</div>');
-    }); 
+    });
 
 
   // 復原
@@ -135,7 +142,7 @@ var saved_dataURL;
   });
 
 
- 
+
   // 讀取
   $('#redo_canvas').click(function(){
      /* var img = new Image();
@@ -175,16 +182,21 @@ var saved_dataURL;
      var prev_state = ctx.getImageData(0,0,canvas.width,canvas.height);
       history.pushState(prev_state, null);
      // console.log(prev_state);
+     audio.pause();
   }
 
   function drawing(e){
     if(isDrawing){
        ctx.lineTo(
-          e.pageX - canvas.offsetLeft, 
+          e.pageX - canvas.offsetLeft,
           e.pageY - canvas.offsetTop
       );
       ctx.stroke();
     }
+
+
+
+
   }
 
   function startDarw(e){
@@ -196,12 +208,13 @@ var saved_dataURL;
     console.log(canvas.offsetLeft + 'canvas.offsetLeft');
     console.log(canvas.offsetTop + 'canvas.offsetTop');*/
     ctx.moveTo(
-      e.pageX - canvas.offsetLeft, 
+      e.pageX - canvas.offsetLeft,
       e.pageY - canvas.offsetTop
     );
+    audio.play();
   }
 
- 
+
    $('#allbackground_picker').colpick({
         layout:'hex',
         colorScheme:'dark',
@@ -220,5 +233,29 @@ var saved_dataURL;
         $(this).colpickSetColor(this.value);
     });
 
+
+   // shim and create AudioContext
+    window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
+    var audio_context = new AudioContext();
+
+    // shim and start GetUserMedia audio stream
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+    navigator.getUserMedia({audio: true}, startUserMedia, function(e) {
+      console.log('No live audio input: ' + e);
+    });
+
+    function startUserMedia(stream) {
+      // create MediaStreamSource and GainNode
+      var input = audio_context.createMediaStreamSource(stream);
+      var volume = audio_context.createGainNode();
+      volume.gain.value = 0.7;
+
+      // connect them and pipe output
+      input.connect(volume);
+      volume.connect(audio_context.destination);
+
+      // connect recorder as well - see below
+      var recorder = new Recorder(input);
+    }
 
 });
