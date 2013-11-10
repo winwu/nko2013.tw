@@ -56,10 +56,12 @@ $(function(){
 
   $('#choose_range').change(function(){
     ctx.lineWidth = $('#choose_range').val();
+    console.log($(this).val() );
+    $( ".color_plate > li" ).css({'width': 40 + ctx.lineWidth , 'height': 40 + ctx.lineWidth });
   });
 
   // 設定color
-  $( "#color_plate > li" ).click(function() {
+  $( ".color_plate > li" ).click(function() {
       $(this).attr("class")
       ctx.strokeStyle =  $(this).attr("class");
 
