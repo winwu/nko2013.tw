@@ -106,16 +106,20 @@ var saved_dataURL;
     sessionStorage.setItem('image', saved_dataURL );
 
     //var data_obj = {name : '', pic:'',music:''};
-    socket.emit('message', {name: user_name, pic: saved_dataURL, music: ''});
+    socket.emit('message', {name: user_name, pic: saved_dataURL, music: '', all_array_x: JSON.stringify(all_array_x), all_array_y: JSON.stringify(all_array_y)});
     //load.disabled = false;
 
     // set canvasImg image src to dataURL
     // so it can be saved as an image
     // A.自己畫的圖片要自己 append
     var author_talking_dom = '<p><code>'+ user_name +'</code>\'s works:</p>'
-    var new_saved_dom = '<img src="' + saved_dataURL + '"/>';
+    var new_saved_dom = '<img src="' + saved_dataURL + '" onclick="play_from_all_array(this);"'
+    +' data-x=' + all_array_x + ' data-y=' + all_array_y +
+    +' data-z="aaa"  />';
+
     console.log(new_saved_dom);
     $('#paint_saved_history').prepend('<div class="clearfix">'+ author_talking_dom + new_saved_dom + '</div>');
+    
 
 
     prop_msg('Broadcase Your Works!');
@@ -123,6 +127,8 @@ var saved_dataURL;
     $('#myCanvas').css('cursor','not-allowed');
     canvas = document.getElementById('myCanvas');
     ctx = canvas.getContext('2d');
+
+
     return false;
   });
 
@@ -131,7 +137,12 @@ var saved_dataURL;
       console.log( data_obj.name );
       console.log('理我一下');
       var author_talking_dom = '<p><code>'+ data_obj.name +'</code>\'s works:</p>'
-      var new_saved_dom = '<img src="' + data_obj.pic + '"/>';
+      //var new_saved_dom = '<img src="' + data_obj.pic + '"/>';
+      
+      var new_saved_dom = '<img src="' + data_obj.pic + '" onclick="play_from_all_array(this);"'
+    +' data-x=' + data_obj.all_array_x + ' data-y=' + data_obj.all_array_y +
+    +' data-z="aaa"  />';
+
       console.log(new_saved_dom);
       $('#paint_saved_history').prepend('<div class="clearfix">'+ author_talking_dom + new_saved_dom + '</div>');
     });
@@ -185,6 +196,8 @@ var saved_dataURL;
       history.pushState(prev_state, null);
      // console.log(prev_state);
      //audio.pause();
+
+     save_one_stroke();
   }
 
   function drawing(e){
@@ -194,11 +207,16 @@ var saved_dataURL;
           e.pageY - canvas.offsetTop
       );
       ctx.stroke();
+    
+      // var temp_x = e.pageX - canvas.offsetLeft;
+      // var temp_y = e.pageY - canvas.offsetTop;
+
+    var temp_x = e.pageX;
+    var temp_y = e.pageY;
+
+      save_one_point(temp_x, temp_y);
+
     }
-
-
-
-
   }
 
   function startDarw(e){
@@ -214,6 +232,15 @@ var saved_dataURL;
       e.pageY - canvas.offsetTop
     );
     //audio.play();
+
+    // var temp_x = e.pageX - canvas.offsetLeft;
+    // var temp_y = e.pageY - canvas.offsetTop;
+
+    var temp_x = e.pageX;
+    var temp_y = e.pageY;
+
+    save_one_point(temp_x, temp_y);
+
   }
 
 

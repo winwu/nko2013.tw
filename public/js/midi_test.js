@@ -2,6 +2,8 @@
     window.onload = init;
 
     function init(){
+      init_drawing_array();
+
       audio_volume = 127;
       MIDI.loadPlugin({
         soundfontUrl: "./midi/soundfont/",
@@ -30,19 +32,24 @@
                 console.log('x: ' + (num+event.clientX/20));
                 console.log('y: ' + (num+event.clientY/20));
 
+                console.log('original x: ' + event.clientX);
+                console.log('original y: ' + event.clientY);
+
                  var x = num+Math.floor(event.clientX/20);
                  var y = num+Math.floor(event.clientY/20);
                  //note = Math.floor(x*Math.random()+y*Math.random());
-                 var note = Math.floor(x/y*50);
+                 //var note = Math.floor(x/y*50);
                  //var note = Math.floor(x*y/50);
+
+                 var note = Math.floor(x);
 
                  note = normalize(note);
 
                  check_volume();
 
-                 console.log(note);
+                 //console.log(note);
                  var random_num = Math.random();
-                 if(random_num>0.9)
+                 //if(random_num>0.8)
                    play(note)
               }
           }
@@ -68,25 +75,44 @@
 
 
     function play(note) {
+      //console.log('played');
       var delay = 0; // play one note every quarter second
       var velocity = 127; // how hard the note hits
       // play the note
       MIDI.setVolume(0, audio_volume);
       MIDI.noteOn(0, note, velocity, delay);
-      //MIDI.noteOff(0, note, delay + 0.75);
-    };
-
-    function check_volume(){
-      audio_volume = Math.round(200 * parseInt(document.getElementById('choose_range').value) / 15);
+      MIDI.noteOff(0, note, delay + 0.75);
     }
 
 
-    function play_series(arr) {
-      var delay = 0; // play one note every quarter second
-      var velocity = 127; // how hard the note hits
-      // play the note
-      MIDI.setVolume(0, audio_volume);
-      for(var i=0;i<arr.length;i++){
-        MIDI.noteOn(0, arr[i], velocity, delay);
-      }
-    };
+    function play_delayed(note) {
+      setTimeout(function(){
+
+        var delay = 0.2; // play one note every quarter second
+        var velocity = 127; // how hard the note hits
+        // play the note
+        MIDI.setVolume(0, audio_volume);
+        MIDI.noteOn(0, note, velocity, delay);
+        //MIDI.noteOff(0, note, delay + 0.75);
+        //MIDI.noteOff(0, note, delay + 0.75);
+
+      },100)
+
+
+    }
+
+    function check_volume(){
+      audio_volume = Math.round(200 * (0.5 + parseInt(document.getElementById('choose_range').value) / 15));
+    }
+
+
+    // function play_series(arr) {
+    //   var delay = 0; // play one note every quarter second
+    //   var velocity = 127; // how hard the note hits
+    //   // play the note
+    //   MIDI.setVolume(0, audio_volume);
+    //   for(var i=0;i<arr.length;i++){
+    //     MIDI.noteOn(0, arr[i], velocity, delay);
+    //   }
+    // };
+
