@@ -234,28 +234,5 @@ var saved_dataURL;
     });
 
 
-   // shim and create AudioContext
-    window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
-    var audio_context = new AudioContext();
-
-    // shim and start GetUserMedia audio stream
-    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-    navigator.getUserMedia({audio: true}, startUserMedia, function(e) {
-      console.log('No live audio input: ' + e);
-    });
-
-    function startUserMedia(stream) {
-      // create MediaStreamSource and GainNode
-      var input = audio_context.createMediaStreamSource(stream);
-      var volume = audio_context.createGainNode();
-      volume.gain.value = 0.7;
-
-      // connect them and pipe output
-      input.connect(volume);
-      volume.connect(audio_context.destination);
-
-      // connect recorder as well - see below
-      var recorder = new Recorder(input);
-    }
 
 });
