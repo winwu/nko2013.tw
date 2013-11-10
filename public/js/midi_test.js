@@ -2,6 +2,7 @@
     window.onload = init;
 
     function init(){
+      audio_volume = 127;
       MIDI.loadPlugin({
         soundfontUrl: "./midi/soundfont/",
         instruments: [ "acoustic_grand_piano", "synth_drum" ],
@@ -20,8 +21,6 @@
 
           ctx = canvas.getContext('2d');
 
-          console.log(ctx.strokeStyle);
-
           window.onmousemove = handleMouseMove;
           function handleMouseMove(event) {
               event = event || window.event; // IE-ism
@@ -38,6 +37,8 @@
                  //var note = Math.floor(x*y/50);
 
                  note = normalize(note);
+
+                 check_volume();
 
                  console.log(note);
                  var random_num = Math.random();
@@ -70,17 +71,21 @@
       var delay = 0; // play one note every quarter second
       var velocity = 127; // how hard the note hits
       // play the note
-      MIDI.setVolume(0, 127);
+      MIDI.setVolume(0, audio_volume);
       MIDI.noteOn(0, note, velocity, delay);
       //MIDI.noteOff(0, note, delay + 0.75);
     };
+
+    function check_volume(){
+      audio_volume = Math.round(200 * parseInt(document.getElementById('choose_range').value) / 15);
+    }
 
 
     function play_series(arr) {
       var delay = 0; // play one note every quarter second
       var velocity = 127; // how hard the note hits
       // play the note
-      MIDI.setVolume(0, 127);
+      MIDI.setVolume(0, audio_volume);
       for(var i=0;i<arr.length;i++){
         MIDI.noteOn(0, arr[i], velocity, delay);
       }
