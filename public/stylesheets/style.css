@@ -111,6 +111,7 @@ border-bottom: 1px solid #EEE;height: 40px;line-height: 40px;text-indent: 20px;f
 
 .color_plate {
   text-align: center;
+  height: 80px;
 }
 .color_plate li{
   display: inline-block;
@@ -133,9 +134,12 @@ border-bottom: 1px solid #EEE;height: 40px;line-height: 40px;text-indent: 20px;f
 .color_plate .pink{background: rgb(233, 75, 103)}
 
 
-#show_history{text-align: center;
-height: 400px;
-overflow: scroll;}
+#show_history{
+  text-align: center;
+  height: 400px;
+  overflow: scroll;
+}
+
 #show_history .title{
   background:#ddddd9;
   margin:0;
@@ -144,6 +148,7 @@ overflow: scroll;}
   position: absolute;
   width: 255px;
 }
+
 #show_history img{
     width: 90%;
 border: 1px solid #eee;

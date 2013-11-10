@@ -56,7 +56,7 @@ $(function(){
 
   $('#choose_range').change(function(){
     ctx.lineWidth = $('#choose_range').val();
-    console.log($(this).val() );
+    // console.log($(this).val() );
     $( ".color_plate > li" ).css({'width': 40 + ctx.lineWidth , 'height': 40 + ctx.lineWidth });
   });
 
@@ -130,8 +130,8 @@ var saved_dataURL;
 
     // B.接收別人的圖片要接 data_obj
     socket.on('receivePic',function(data_obj){
-      console.log( data_obj.name );
-      console.log('理我一下');
+      //console.log( data_obj.name );
+      //console.log('理我一下');
       var author_talking_dom = '<p><code>'+ data_obj.name +'</code>\'s works:</p>'
       var new_saved_dom = '<img src="' + data_obj.pic + '"/>';
       console.log(new_saved_dom);
