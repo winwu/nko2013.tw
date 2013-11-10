@@ -72,7 +72,7 @@ $(function(){
 
   //清除 = 新增圖面
   $('#add_canvas').click(function(e){
-    $('#redo_canvas, #undo_canvas, #save_canvas').removeAttr('disabled');
+    $('#redo_canvas, #undo_canvas, #save_canvas, #allbackground_picker').removeAttr('disabled');
     newColor = '#ffffff';
     ctx.fillStyle='';
     myCanvas.style.background='';
@@ -101,7 +101,7 @@ var saved_dataURL;
 
     myCanvas.style.background = newColor;
     //ctx.fill();
-    ctx.fillRect(0, 0, 700, 350);
+    ctx.fillRect(0,0,canvas.width,canvas.height);
     ctx.fill();
 
     saved_dataURL =  canvas.toDataURL('image/jpeg');
@@ -121,7 +121,7 @@ var saved_dataURL;
 
 
     prop_msg('Broadcase Your Works!');
-    $('#redo_canvas, #undo_canvas, #save_canvas').attr('disabled','disabled');
+    $('#redo_canvas, #undo_canvas, #save_canvas, #allbackground_picker').attr('disabled','disabled');
     $('#myCanvas').css('cursor','not-allowed');
     canvas = document.getElementById('myCanvas');
     ctx = canvas.getContext('2d');
