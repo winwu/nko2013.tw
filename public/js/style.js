@@ -42,7 +42,7 @@ $(function(){
   });
 
   //Audio
-  var audio = new Audio('musics/01.mp3');
+  //var audio = new Audio('musics/01.mp3');
 
   //canvas
   var canvas = document.getElementById('myCanvas');
@@ -64,7 +64,7 @@ $(function(){
       ctx.strokeStyle =  $(this).attr("class");
 
       //change music
-      audio = new Audio('musics/01.mp3');
+      //audio = new Audio('musics/01.mp3');
 
   });
 
@@ -184,7 +184,7 @@ var saved_dataURL;
      var prev_state = ctx.getImageData(0,0,canvas.width,canvas.height);
       history.pushState(prev_state, null);
      // console.log(prev_state);
-     audio.pause();
+     //audio.pause();
   }
 
   function drawing(e){
@@ -213,7 +213,7 @@ var saved_dataURL;
       e.pageX - canvas.offsetLeft,
       e.pageY - canvas.offsetTop
     );
-    audio.play();
+    //audio.play();
   }
 
 
